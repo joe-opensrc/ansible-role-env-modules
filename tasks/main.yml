@@ -1,2 +1,6 @@
 ---
 # tasks file for env_modules
+
+- import_tasks: download_install.yml
+  tags: install
+

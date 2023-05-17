@@ -1,2 +1,6 @@
 ---
 # defaults file for env_modules
+#
+modules_root_prefix: "/opt/soft/host"
+modules_download_url: "https://github.com/cea-hpc/modules/releases/download/v5.3.0/modules-5.3.0.tar.gz"
+modules_download_dir: "/var/tmp/ansible/downloads/modules"
