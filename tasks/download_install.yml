@@ -1,0 +1,51 @@
+---
+
+- name: Create download dir
+  become: yes
+  ansible.builtin.file:
+    state: directory
+    path: "{{ modules_download_dir }}"
+    owner: "{{ modules_install_user }}"
+    mode: 0750
+
+- name: Fetch Modules
+  ansible.builtin.get_url:
+    url: "{{ modules_download_url }}"
+    dest: "{{ modules_download_dir }}/"
+    mode: 0750
+
+# - name: Run the installer
+#   register: install
+#   ansible.builtin.command:
+#     argv: [ "{{ modules_download_name_full }}", -b, -p, "{{ modules_root_prefix }}", "{{ modules_update_install | default(omit) }}"]
+#   failed_when:
+#     - install.rc != 0
+#     - "'use the -u option.' not in install.stderr"
+#   changed_when:
+#     - "'use the -u option.' not in install.stderr"
+
+# - name: Output, installer
+#   ansible.builtin.debug:
+#     msg: "{{ install }}"
+
+# - name: Render template dot_condarc
+#   become: yes
+#   ansible.builtin.template:
+#     src: "{{ modules_templates_dir }}/dot_condarc"
+#     dest: "{{ modules_root_prefix }}/.condarc"
+#     owner: "{{ modules_install_user }}"
+#     group: conda
+#     mode: 0664
+
+
+
+# - name: Set conda group permission on installation dir (recursively)
+#   become: yes
+#   ansible.builtin.file:
+#     state: directory
+#     recurse: yes
+#     path: "{{ modules_root_prefix }}"
+#     owner: "{{ modules_install_user }}"
+#     group: conda 
+#     mode: 0775
+
