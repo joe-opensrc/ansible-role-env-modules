@@ -1,6 +1,19 @@
 ---
 # defaults file for env_modules
 #
+modules_version: "5.3.0"
 modules_root_prefix: "/opt/soft/host"
-modules_download_url: "https://github.com/cea-hpc/modules/releases/download/v5.3.0/modules-5.3.0.tar.gz"
-modules_download_dir: "/var/tmp/ansible/downloads/modules"
+
+modules_tar_name: "modules-{{ modules_version }}.tar.gz"
+modules_release: "v{{ modules_version }}/{{ modules_tar_name }}"
+
+modules_download_url: "https://github.com/cea-hpc/modules/releases/download/{{ modules_release }}"
+
+modules_tmp_dir: "/var/tmp/ansible/modules"
+modules_download_dir: "{{ modules_tmp_dir }}/downloads"
+modules_build_dir: "{{ modules_tmp_dir }}/build"
+modules_root_dir: "{{ modules_root_prefix }}/modules/{{ modules_version }}"
+modules_init_dir: "{{ modules_root_dir }}/init"
+
+
+modules_sys_user: "modules"
