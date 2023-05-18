@@ -8,6 +8,7 @@
     name:
       - tar
       - gzip
+      - unzip
       - dejagnu
       - man
       - tcl-devel
