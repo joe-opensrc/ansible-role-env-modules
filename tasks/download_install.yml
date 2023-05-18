@@ -65,7 +65,6 @@
   args:
     chdir: "{{ modules_build_dir }}/{{ binaries_extracted.files[0] }}"
 
-
 - name: Build¦ install modules
   become: yes
   ansible.builtin.command: "make install"
