@@ -1,5 +1,4 @@
 ---
-
 - name: Ensure a modules system group {{ modules_sys_user }}
   become: yes
   register: group_created
@@ -30,4 +29,3 @@
 - name: Info¦ created user?
   ansible.builtin.debug:
     msg: "{{ user_created }}"
-

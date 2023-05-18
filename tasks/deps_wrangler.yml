@@ -30,4 +30,3 @@
 - name: Info¦ dev toolchain installed?
   ansible.builtin.debug:
     msg: "{{ dev_toolchain }}"
-
