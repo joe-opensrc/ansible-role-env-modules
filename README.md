@@ -4,6 +4,9 @@ Role Name
 Installs Modules from Github: 
   - https://github.com/cea-hpc/modules
 
+Specifically:
+  - https://github.com/cea-hpc/modules/releases/download/v5.3.0/modules-5.3.0.tar.gz
+
 Requirements
 ------------
 
@@ -15,10 +18,12 @@ Role Variables
 
 See defaults/main.yml.
 
-That you might want to override: 
-  modules_version: "5.3.0"
+The following variables are those you may want to override: 
+```
+  modules_version:     "5.3.0"
   modules_root_prefix: "/opt/soft/host"
-  modules_sys_user: "modules"
+  modules_sys_user:    "modules"
+```
 
 Dependencies
 ------------
