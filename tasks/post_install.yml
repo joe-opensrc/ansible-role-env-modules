@@ -1,0 +1,13 @@
+---
+- name: symlink init profiles system-wide
+  become: yes
+  ansible.builtin.file:
+    state: link
+    src:  "{{ modules_init_dir }}/{{ item.0 }}"
+    dest: "/etc/profile.d/{{ item.1 }}"
+  loop:
+    - [ profile.sh, modules.sh ]
+    - [ profile.csh, modules.csh ]
+
+# TODO: 
+#  - set MODULEPATH if defined ?
