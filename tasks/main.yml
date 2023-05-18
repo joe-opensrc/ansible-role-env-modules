@@ -1,6 +1,17 @@
 ---
 # tasks file for env_modules
 
+- import_tasks: deps_wrangler.yml
+  tags: deps
+
+- import_tasks: user_wrangler.yml
+  tags: user
+
 - import_tasks: download_install.yml
   tags: install
+
+- import_tasks: post_install.yml
+  tags: post
+
+
 
