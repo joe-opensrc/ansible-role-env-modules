@@ -12,8 +12,8 @@ modules_download_url: "https://github.com/cea-hpc/modules/releases/download/{{ m
 modules_tmp_dir: "/var/tmp/ansible/modules"
 modules_download_dir: "{{ modules_tmp_dir }}/downloads"
 modules_build_dir: "{{ modules_tmp_dir }}/build"
+
 modules_root_dir: "{{ modules_root_prefix }}/modules/{{ modules_version }}"
 modules_init_dir: "{{ modules_root_dir }}/init"
-
 
 modules_sys_user: "modules"
