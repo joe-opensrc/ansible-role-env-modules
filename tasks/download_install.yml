@@ -14,18 +14,21 @@
     - "{{ modules_build_dir }}"
     - "{{ modules_root_prefix }}"
 
-# - name: Fetch Modules
-#   ansible.builtin.get_url:
-#     url: "{{ modules_download_url }}"
-#     dest: "{{ modules_download_dir }}/"
-#     owner: "{{ modules_sys_user }}"
-#     mode: 0750
+- name: Fetch Modules
+  become: yes
+  ansible.builtin.get_url:
+    url: "{{ modules_download_url }}"
+    dest: "{{ modules_download_dir }}"
+    owner: "{{ modules_sys_user }}"
+    group: "{{ modules_sys_user }}"
+    mode: 0750
 
-# - name: Info¦ modules_download_url
-#   ansible.builtin.debug:
-#     msg: "{{ modules_download_url }}"
+- name: Info¦ modules_download_url
+  ansible.builtin.debug:
+    msg: "{{ modules_download_url }}"
 
-- name: Fetch and Extract modules release binaries
+- name: Extract modules release binaries
+  become: yes
   register: binaries_extracted
   ansible.builtin.unarchive:
     remote_src: true
@@ -40,17 +43,24 @@
     msg: "{{ binaries_extracted }}"
 
 - name: Build¦ configure modules src
+  become: yes
+  become_user: "{{ modules_sys_user }}"
+  args:
+    chdir: "{{ modules_build_dir }}/{{ binaries_extracted.files[0] }}"
+    creates: "lib/config.log"
   ansible.builtin.command: >
     ./configure --prefix {{ modules_root_prefix }}/modules
       --enable-versioning
       --enable-set-shell-startup
       --enable-quarantine-support
-  args:
-    chdir: "{{ modules_build_dir }}/{{ binaries_extracted.files[0] }}"
-#"{{ modules_build_dir }}/"
-    creates: "lib/config.log"
+
+- name: Quirks¦ Fix src file perms ( root files in original tarball )
+  become: yes
+  ansible.builtin.shell: "chown --preserve-root -R {{ modules_sys_user }}:{{ modules_sys_user }} {{ modules_build_dir }}"
 
 - name: Build¦ make modules
+  become: yes
+  become_user: "{{ modules_sys_user }}"
   ansible.builtin.command: "make -j4"
   args:
     chdir: "{{ modules_build_dir }}/{{ binaries_extracted.files[0] }}"
