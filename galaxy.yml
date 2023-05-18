@@ -1,0 +1,19 @@
+---
+namespace: "joe_opensrc"
+name: "env-modules"
+version: "1.0.0"
+description: "Environment Modules Wrangler"
+license:
+  - "GPL-2.0-only"
+readme: "README.md"
+authors:
+  - "Joe OpenSrc"
+dependencies:
+tags:
+  - environment
+  - software
+  - management
+  - modules
+  - system
+  - hpc
+repository: "https://github.com/joe-opensrc/ansible-env-modules"
