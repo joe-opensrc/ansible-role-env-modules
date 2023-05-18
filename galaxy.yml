@@ -1,6 +1,6 @@
 ---
 namespace: "joe_opensrc"
-name: "env-modules"
+name: "env_modules"
 version: "1.0.0"
 description: "Environment Modules Wrangler"
 license:
