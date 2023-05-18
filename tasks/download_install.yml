@@ -40,19 +40,19 @@
     msg: "{{ binaries_extracted }}"
 
 - name: Build¦ configure modules src
-  ansible.builtin.command: "./configure --prefix {{ modules_root_prefix }}/modules --enable-versioning --enable-set-shell-startup --enable-quarantine-support" 
+  ansible.builtin.command: "./configure --prefix {{ modules_root_prefix }}/modules --enable-versioning --enable-set-shell-startup --enable-quarantine-support"
   args:
     chdir: "{{ modules_build_dir }}/{{ binaries_extracted.files[0] }}"
 #"{{ modules_build_dir }}/"
     creates: "lib/config.log"
 
-- name: Build¦ make modules 
+- name: Build¦ make modules
   ansible.builtin.command: "make -j4"
   args:
     chdir: "{{ modules_build_dir }}/{{ binaries_extracted.files[0] }}"
 
 
-- name: Build¦ install modules 
+- name: Build¦ install modules
   become: yes
   ansible.builtin.command: "make install"
   args:

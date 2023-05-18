@@ -5,8 +5,8 @@
   ansible.builtin.package:
     state: present
     update_cache: yes
-    name: 
-      - tar  
+    name:
+      - tar
       - gzip
       - dejagnu
       - man
