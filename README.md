@@ -33,7 +33,7 @@ Dependencies
 Example Playbook
 ----------------
 
-  TODO: add harnes github url
+  TODO: add harness github url
 
 License
 -------
@@ -44,4 +44,3 @@ Author Information
 ------------------
 
 Joe OpenSrc
-
