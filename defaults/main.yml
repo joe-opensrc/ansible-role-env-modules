@@ -2,7 +2,7 @@
 # defaults file for env_modules
 #
 modules_version: "5.3.0"
-modules_root_prefix: "/opt/soft/host"
+modules_root_prefix: "/opt/soft/env"
 
 modules_tar_name: "modules-{{ modules_version }}.tar.gz"
 modules_release: "v{{ modules_version }}/{{ modules_tar_name }}"
@@ -15,5 +15,6 @@ modules_build_dir: "{{ modules_tmp_dir }}/build"
 
 modules_root_dir: "{{ modules_root_prefix }}/modules/{{ modules_version }}"
 modules_init_dir: "{{ modules_root_dir }}/init"
+modules_bin_dir: "{{ modules_root_dir }}/bin"
 
 modules_sys_user: "modules"
