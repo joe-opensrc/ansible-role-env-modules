@@ -3,9 +3,10 @@
   become: yes
   args:
     chdir: "{{ modules_download_dir }}"
+    creates: "{{ modules_download_dir }}/nagelfar.tcl.tar.gz"
   ansible.builtin.command: "wget -Onagelfar.tcl.tar.gz --no-check-certificate 'https://downloads.sourceforge.net/project/nagelfar/Rel_133/nagelfar133.tar.gz?ts=gAAAAABkZ6zQUT72l7aElAb3pqTQVzrqsmWkFznaZ9LFaFDF8PT-OhxN_01OsV5l7zZoqnVQcnbBl_5UeqC3FggQ5_Bnj2hmUQ%3D%3D&r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fnagelfar%2Ffiles%2FRel_133%2Fnagelfar133.tar.gz%2Fdownload'"
 
-- name: Deps¦ nagelfar unpack
+- name: Deps¦ nagelfar unpack (bin)
   become: yes
   register: nagelfar_extracted
   ansible.builtin.unarchive:
@@ -13,9 +14,24 @@
     list_files: yes
     owner: "root"
     group: "root"
+    extra_opts:
+      - --strip-components=1
+      - nagelfar133/nagelfar.tcl
     src: "{{ modules_download_dir }}/nagelfar.tcl.tar.gz"
     dest: "{{ modules_bin_dir }}/"
 
+- name: Deps¦ nagelfar unpack (share)
+  become: yes
+  register: nagelfar_extracted
+  ansible.builtin.unarchive:
+    remote_src: true
+    list_files: yes
+    owner: "root"
+    group: "root"
+    extra_opts:
+      - --strip-components=1
+    src: "{{ modules_download_dir }}/nagelfar.tcl.tar.gz"
+    dest: "{{ modules_nagelfar_share_dir }}/"
 
 - name: symlink init profiles system-wide
   become: yes
