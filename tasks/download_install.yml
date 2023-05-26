@@ -13,7 +13,7 @@
     - "{{ modules_download_dir }}"
     - "{{ modules_build_dir }}"
     - "{{ modules_root_prefix }}"
-
+    - "{{ modules_profiles_dir }}"
 - name: Fetch Modules
   become: yes
   ansible.builtin.get_url:
