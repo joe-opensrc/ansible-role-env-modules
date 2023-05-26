@@ -42,3 +42,7 @@
   loop:
     - [profile.sh, modules.sh]
     - [profile.csh, modules.csh]
+
+- name: set root owner/group on {{ modules_root_prefix }}
+  become: yes
+  ansible.builtin.shell: "chown --preserve-root -R root:root {{ modules_root_prefix }}"
