@@ -1,7 +1,17 @@
 ---
 # tasks file for env_modules
 
-- import_tasks: deps_wrangler.yml
+# - include_tasks: "install/{{ ansible_facts['os_family'] | default('Suse') }}.yml"
+
+- name: register os_family variable
+  ansible.builtin.set_fact:
+    os_family: "{{ ansible_facts['os_family'] | default('Suse') }}"
+  tags: deps
+
+- include_tasks: 
+    file: "deps/{{ os_family }}.yml"
+    apply:
+      tags: deps
   tags: deps
 
 - import_tasks: user_wrangler.yml
