@@ -5,6 +5,10 @@
   register: apt_install
   ansible.builtin.apt:
     update_cache: yes
+    force_apt_get: yes
+    update_cache_retries: 1
+    update_cache_retry_max_delay: 5
+    install_recommends: no
     package:
       - tar
       - gzip
