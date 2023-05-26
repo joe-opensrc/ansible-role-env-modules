@@ -44,15 +44,15 @@
 
 - name: Build¦ make clean
   become: yes
-  become_user: "{{ modules_sys_user }}"
+  become_flags: "-u {{ modules_sys_user }}"
   args:
     chdir: "{{ modules_build_dir }}/{{ binaries_extracted.files[0] }}"
-  ansible.builtin.command:
-    make clean
+  ansible.builtin.shell:
+    make clean || true
 
 - name: Build¦ configure modules src
   become: yes
-  become_user: "{{ modules_sys_user }}"
+  become_flags: "-u {{ modules_sys_user }}"
   args:
     chdir: "{{ modules_build_dir }}/{{ binaries_extracted.files[0] }}"
     # creates: "lib/config.log"
@@ -68,7 +68,7 @@
 
 - name: Build¦ make modules
   become: yes
-  become_user: "{{ modules_sys_user }}"
+  become_flags: "-u {{ modules_sys_user }}"
   ansible.builtin.command: "make -j4"
   args:
     chdir: "{{ modules_build_dir }}/{{ binaries_extracted.files[0] }}"
@@ -78,4 +78,3 @@
   ansible.builtin.command: "make install"
   args:
     chdir: "{{ modules_build_dir }}/{{ binaries_extracted.files[0] }}"
-
