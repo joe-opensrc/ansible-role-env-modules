@@ -1,0 +1,20 @@
+# Debian + Ubuntu
+#
+- name: Install prequisites via package manager
+  become: yes
+  register: apt_install
+  ansible.builtin.apt:
+    update_cache: yes
+    package:
+      - tar
+      - gzip
+      - unzip
+      - dejagnu
+      - man
+      - tcl-dev
+      - ca-certificates
+      - wget
+
+- name: Info¦ install apt?
+  ansible.builtin.debug:
+    msg: "{{ apt_install }}"

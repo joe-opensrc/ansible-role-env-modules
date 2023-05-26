@@ -1,0 +1,33 @@
+---
+- name: Ensure dependencies to install modules
+  become: yes
+  register: packages_installed
+  ansible.builtin.package:
+    state: present
+    update_cache: yes
+    name:
+      - tar
+      - gzip
+      - unzip
+      - dejagnu
+      - man
+      - tcl-devel
+
+- name: Info¦ packages installed?
+  ansible.builtin.debug:
+    msg: "{{ packages_installed }}"
+
+- name: Install devel_basis (Build Essential)
+  become: yes
+  register: dev_toolchain
+  community.general.zypper:
+    update_cache: yes
+    state: present
+    type: pattern
+    name:
+      - devel_basis
+      # - devel_tcl
+
+- name: Info¦ dev toolchain installed?
+  ansible.builtin.debug:
+    msg: "{{ dev_toolchain }}"
