@@ -18,6 +18,7 @@
       - tcl-dev
       - ca-certificates
       - wget
+      - sudo
 
 - name: Info¦ install apt?
   ansible.builtin.debug:
