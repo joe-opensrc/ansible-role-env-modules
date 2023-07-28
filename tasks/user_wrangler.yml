@@ -1,5 +1,5 @@
 ---
-- name: Ensure a modules system group {{ modules_sys_user }}
+- name: Ensure a modules system group ({{ modules_sys_user }})
   become: yes
   register: group_created
   ansible.builtin.group:
@@ -11,7 +11,7 @@
   ansible.builtin.debug:
     msg: "{{ group_created }}"
 
-- name: Ensure a modules system user {{ modules_sys_user }}
+- name: Ensure a modules system user ({{ modules_sys_user }})
   become: yes
   register: user_created
   ansible.builtin.user:
