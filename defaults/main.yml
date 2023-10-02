@@ -2,7 +2,7 @@
 # defaults file for env_modules
 #
 modules_version: "5.3.0"
-modules_root_prefix: "/opt/soft/env"
+modules_root_prefix: "/opt/soft"
 
 modules_tar_name: "modules-{{ modules_version }}.tar.gz"
 modules_release: "v{{ modules_version }}/{{ modules_tar_name }}"

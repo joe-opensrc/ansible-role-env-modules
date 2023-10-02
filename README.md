@@ -21,7 +21,7 @@ See defaults/main.yml.
 The following variables are those you may want to override: 
 ```
   modules_version:     "5.3.0"
-  modules_root_prefix: "/opt/soft/host"
+  modules_root_prefix: "/opt/soft"
   modules_sys_user:    "modules"
 ```
 
