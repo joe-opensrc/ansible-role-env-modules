@@ -15,16 +15,16 @@
   become: yes
   register: user_created
   ansible.builtin.user:
-    state: present
-    system: true
-    create_home: false
+    state:       present
+    system:      true
+    create_home: true
     # password: "!"
     # shell: "/usr/sbin/nologin"
-    shell: "/bin/false"
+    shell:   "/bin/false"
     comment: "modules system user"
-    home: "{{ modules_root_prefix }}"
-    name: "{{ modules_sys_user }}"
-    group: "{{ modules_sys_user }}"
+    home:    "/var/admin/modules"
+    name:    "{{ modules_sys_user }}"
+    group:   "{{ modules_sys_user }}"
 
 - name: Info¦ created user?
   ansible.builtin.debug:
