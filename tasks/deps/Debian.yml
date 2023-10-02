@@ -19,6 +19,7 @@
       - ca-certificates
       - wget
       - sudo
+      - build-essential
 
 - name: Info¦ install apt?
   ansible.builtin.debug:
