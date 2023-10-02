@@ -45,7 +45,7 @@
 
 - name: Build¦ make clean
   become: yes
-  become_flags: "-u {{ modules_sys_user }}"
+  become_user: "{{ modules_sys_user }}"
   args:
     chdir: "{{ modules_build_dir }}/{{ binaries_extracted.files[0] }}"
   ansible.builtin.shell:
@@ -53,7 +53,7 @@
 
 - name: Build¦ configure modules src
   become: yes
-  become_flags: "-u {{ modules_sys_user }}"
+  become_user: "{{ modules_sys_user }}"
   args:
     chdir: "{{ modules_build_dir }}/{{ binaries_extracted.files[0] }}"
     # creates: "lib/config.log"
